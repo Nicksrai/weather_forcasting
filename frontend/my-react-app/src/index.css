@@ -6,7 +6,7 @@
   color: white;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: center;      /* This is OK now */
   padding-top: 30px;
   background-size: cover !important;
   background-position: center !important;
@@ -15,40 +15,18 @@
   overflow: hidden;
 }
 
-/* ===== SUNNY ===== */
-.sunny {
-  background-image: url("https://images.unsplash.com/photo-1501973801540-537f08ccae7b?auto=format&fit=crop&w=1600&q=80") !important;
-}
+/* WEATHER THEMES */
+.sunny { background-image: url("https://images.unsplash.com/photo-1501973801540-537f08ccae7b?auto=format&fit=crop&w=1600&q=80") !important; }
+.cloudy { background-image: url("https://images.unsplash.com/photo-1499346030926-9a72daac6c63?auto=format&fit=crop&w=1600&q=80") !important; }
+.rainy { background-image: url("https://images.unsplash.com/photo-1526676037777-05a7b6f4e2b2?auto=format&fit=crop&w=1600&q=80") !important; }
+.storm { background-image: url("https://images.unsplash.com/photo-1500673922987-e212871fec22?auto=format&fit=crop&w=1600&q=80") !important; }
+.snowy { background-image: url("https://images.unsplash.com/photo-1608889175123-1f1f908db8b3?auto=format&fit=crop&w=1600&q=80") !important; }
+.night { background-image: url("https://images.unsplash.com/photo-1470441004053-75a75ba8f360?auto=format&fit=crop&w=1600&q=80") !important; }
 
-/* ===== CLOUDY ===== */
-.cloudy {
-  background-image: url("https://images.unsplash.com/photo-1499346030926-9a72daac6c63?auto=format&fit=crop&w=1600&q=80") !important;
-}
-
-/* ===== RAINY ===== */
-.rainy {
-  background-image: url("https://images.unsplash.com/photo-1526676037777-05a7b6f4e2b2?auto=format&fit=crop&w=1600&q=80") !important;
-}
-
-/* ===== STORM ===== */
-.storm {
-  background-image: url("https://images.unsplash.com/photo-1500673922987-e212871fec22?auto=format&fit=crop&w=1600&q=80") !important;
-}
-
-/* ===== SNOWY ===== */
-.snowy {
-  background-image: url("https://images.unsplash.com/photo-1608889175123-1f1f908db8b3?auto=format&fit=crop&w=1600&q=80") !important;
-}
-
-/* ===== NIGHT ===== */
-.night {
-  background-image: url("https://images.unsplash.com/photo-1470441004053-75a75ba8f360?auto=format&fit=crop&w=1600&q=80") !important;
-}
-
-/* GLASS PANEL FIX (MAKES IT RESPONSIVE) */
+/* GLASS PANEL FIX — SUPER IMPORTANT */
 .app-glass-panel {
-  width: 80%;
-  max-width: 900px;
+  width: 95%;
+  max-width: 1000px;   /* Desktop wide — but mobile will override */
   background: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(10px);
   border-radius: 14px;
@@ -56,46 +34,37 @@
   box-sizing: border-box;
 }
 
+/* LAYOUT */
 .weather-layout {
   display: flex;
   justify-content: space-between;
   width: 100%;
   gap: 20px;
-  flex-wrap: wrap; /* 💡 FIX: Allows layout to wrap on smaller screens */
+  flex-wrap: wrap;
 }
 
+/* CARDS */
 .weather-main,
 .forecast-card {
   flex: 1;
-  min-width: 250px; /* 💡 PREVENTS overflow on small screens */
+  min-width: 250px;
   padding: 20px;
   box-sizing: border-box;
 }
 
-/* Temperature Fonts Fix */
-.big-temp {
-  font-size: 60px;
-}
-
-.city-name {
-  font-size: 32px;
-}
+.big-temp { font-size: 60px; }
+.city-name { font-size: 32px; }
 
 /* =========================================================
    RESPONSIVE DESIGN
    ========================================================= */
 
-/* 📱 Small Devices (Phones) */
 @media (max-width: 600px) {
-  .weather-container {
-    padding-top: 15px;
-    background-size: cover !important;
-    background-position: center !important;
-  }
-
   .app-glass-panel {
-    width: 95%;
-    padding: 15px;
+    width: 100% !important;
+    max-width: 100% !important;
+    border-radius: 0;  /* Mobile fullscreen look */
+    padding: 12px;
   }
 
   .weather-layout {
@@ -107,62 +76,43 @@
   .forecast-card {
     width: 100%;
     min-width: unset;
-    padding: 15px;
+    padding: 12px;
   }
 
-  .big-temp {
-    font-size: 35px !important;
-  }
-
-  .city-name {
-    font-size: 24px !important;
-  }
+  .big-temp { font-size: 36px; }
+  .city-name { font-size: 24px; }
 }
 
-/* 📱📲 Medium Devices (Large Phones & Small Tablets) */
 @media (min-width: 600px) and (max-width: 900px) {
   .app-glass-panel {
-    width: 90%;
-    padding: 18px;
+    width: 95%;
+    max-width: 95%;
   }
 
   .weather-layout {
     flex-direction: column;
   }
 
-  .big-temp {
-    font-size: 45px !important;
-  }
+  .big-temp { font-size: 45px; }
 }
 
-/* 💻 Tablets / Small Laptops */
 @media (min-width: 900px) and (max-width: 1200px) {
   .app-glass-panel {
     width: 85%;
   }
-
-  .weather-layout {
-    gap: 25px;
-  }
 }
 
-/* 🖥 Large Screens */
 @media (min-width: 1200px) {
   .app-glass-panel {
     width: 70%;
+    max-width: 1000px;
   }
 }
-/* FORCE FULL WIDTH OF APP — CRITICAL FIX */
-.weather-container,
-.app-glass-panel,
-.weather-layout {
-  max-width: 100% !important;
-  width: 100% !important;
-}
 
-/* Fix center-aligned shrinking layout */
-body, html {
-  margin: 0;
-  padding: 0;
-  width: 100%;
+/* FIX: ROOT CONTAINER SHOULD NOT LIMIT WIDTH */
+html, body, #root {
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+  max-width: 100% !important;
 }
