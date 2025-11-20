@@ -1,198 +1,62 @@
-/* ========================================================= */
-/*                MAIN WEATHER CONTAINER                     */
-/* ========================================================= */
-
-/* ========================================================= */
-/*                     MAIN GRID LAYOUT                      */
-/* ========================================================= */
-
-.weather-layout {
+/* MAIN CONTAINER */
+.weather-container {
+  min-height: 100vh;
   width: 100%;
-  max-width: 100%;
-  display: grid;
-  grid-template-columns: 1fr 1.3fr;
-  gap: 25px;
-  margin-top: 20px;
-  z-index: 2;
-}
-
-/* 📱 Mobile Fix — stack vertically */
-@media (max-width: 768px) {
-  .weather-layout {
-    grid-template-columns: 1fr;   /* Stack */
-    height: auto;                 /* Remove forced height */
-    gap: 20px;
-    width: 100%;
-  }
-
-  .forecast-card,
-  .weather-main {
-    width: 100% !important;
-    height: auto !important;
-  }
-
-  .main-icon {
-    width: 90px;
-  }
-
-  .big-temp {
-    font-size: 2.8rem;
-  }
-
-  .city-name {
-    font-size: 1.6rem;
-  }
-}
-
-
-/* ========================================================= */
-/*                   WEATHER THEMES (BACKGROUND)             */
-/* ========================================================= */
-
-/* SUNNY */
-.sunny {
-  background-image: url("https://images.unsplash.com/photo-1501973801540-537f08ccae7b?auto=format&fit=crop&w=1600&q=80");
-}
-
-/* CLOUDY */
-.cloudy {
-  background-image: url("https://images.unsplash.com/photo-1499346030926-9a72daac6c63?auto=format&fit=crop&w=1600&q=80");
-}
-
-/* RAINY */
-.rainy {
-  background-image: url("https://images.unsplash.com/photo-1526676037777-05a7b6f4e2b2?auto=format&fit=crop&w=1600&q=80");
-}
-
-/* STORM */
-.storm {
-  background-image: url("https://images.unsplash.com/photo-1500673922987-e212871fec22?auto=format&fit=crop&w=1600&q=80");
-}
-
-/* SNOW */
-.snowy {
-  background-image: url("https://images.unsplash.com/photo-1608889175123-1f1f908db8b3?auto=format&fit=crop&w=1600&q=80");
-}
-
-/* NIGHT */
-.night {
-  background-image: url("https://images.unsplash.com/photo-1470441004053-75a75ba8f360?auto=format&fit=crop&w=1600&q=80");
-}
-
-
-/* ========================================================= */
-/*                 GLASSMORPHISM PANEL COMMON                */
-/* ========================================================= */
-
-.glass-card {
-  background: rgba(255, 255, 255, 0.12);
-  backdrop-filter: blur(18px);
-  border-radius: 20px;
-  border: 1px solid rgba(255,255,255,0.2);
-  padding: 18px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-}
-
-
-/* ========================================================= */
-/*                     MAIN GRID LAYOUT                      */
-/* ========================================================= */
-
-/* .weather-layout {
-  width: 90%;
-  max-width: 1200px;
-  height: 70vh;   /* Fix height to keep everything visible */
-  /* display: grid;
-  grid-template-columns: 1fr 1.3fr;
-  gap: 25px;
-  margin-top: 20px;
-  z-index: 2;
-} */ */
-
-
-/* ========================================================= */
-/*                     CURRENT WEATHER SIDE                  */
-/* ========================================================= */
-
-.city-name {
-  font-size: 2rem;
-  font-weight: 600;
-  margin-bottom: 10px;
-}
-
-.current-section {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  padding-top: 20px;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}
+
+/* BACKGROUNDS */
+.sunny { background-image: url("https://images.unsplash.com/photo-1501973801540-537f08ccae7b?auto=format&fit=crop&w=1600&q=80"); }
+.cloudy { background-image: url("https://images.unsplash.com/photo-1499346030926-9a72daac6c63?auto=format&fit=crop&w=1600&q=80"); }
+.rainy  { background-image: url("https://images.unsplash.com/photo-1526676037777-05a7b6f4e2b2?auto=format&fit=crop&w=1600&q=80"); }
+.storm  { background-image: url("https://images.unsplash.com/photo-1500673922987-e212871fec22?auto=format&fit=crop&w=1600&q=80"); }
+.snowy  { background-image: url("https://images.unsplash.com/photo-1608889175123-1f1f908db8b3?auto=format&fit=crop&w=1600&q=80"); }
+.night  { background-image: url("https://images.unsplash.com/photo-1470441004053-75a75ba8f360?auto=format&fit=crop&w=1600&q=80"); }
+
+/* GLASS PANEL */
+.app-glass-panel {
+  width: 95%;
+  margin: auto;
+  background: rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(12px);
+  border-radius: 16px;
+  padding: 20px;
+}
+
+/* LAYOUT */
+.weather-layout {
+  display: flex;
+  flex-wrap: wrap;
   gap: 20px;
 }
 
-.main-icon {
-  width: 120px;
-}
-
-.big-temp {
-  font-size: 4rem;
-  font-weight: 600;
-}
-
-.condition-text {
-  font-size: 1.2rem;
-  opacity: 0.9;
-}
-
-
-/* ========================================================= */
-/*                    FORECAST SIDE (RIGHT)                  */
-/* ========================================================= */
-
+/* CARDS */
+.weather-main,
 .forecast-card {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
+  flex: 1;
+  min-width: 250px;
 }
 
-.forecast-title {
-  font-size: 1.5rem;
-  margin-bottom: 10px;
-}
+.big-temp { font-size: 48px; }
+.city-name { font-size: 28px; }
 
-/* HORIZONTAL SCROLL */
-.forecast-list {
-  display: flex;
-  gap: 15px;
-  white-space: nowrap;
-  overflow-x: auto;
-  overflow-y: hidden;
-  padding-bottom: 10px;
-}
+/* MOBILE FIX */
+@media (max-width: 768px) {
+  .app-glass-panel {
+    width: 100%;
+    padding: 12px;
+    border-radius: 0;
+  }
 
-.forecast-list::-webkit-scrollbar {
-  height: 6px;
-}
+  .weather-layout {
+    flex-direction: column;
+  }
 
-
-
-/* ========================================================= */
-/*                        LOADING / ERROR                    */
-/* ========================================================= */
-
-.loading {
-  font-size: 1.2rem;
-  color: #ffe082;
-}
-
-.error {
-  font-size: 1.2rem;
-  color: #ff8a80;
-}
-
-
-/* ========================================================= */
-/*                          FOOTER                           */
-/* ========================================================= */
-
-.footer-text {
-  margin-top: 20px;
-  text-align: center;
-  opacity: 0.8;
+  .big-temp { font-size: 32px; }
+  .city-name { font-size: 22px; }
 }
