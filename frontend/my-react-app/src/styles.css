@@ -6,71 +6,78 @@
   color: white;
   display: flex;
   flex-direction: column;
-  padding-top: 20px;          /* Removed align-items: center */
+  padding-top: 20px;
   background-size: cover !important;
   background-position: center !important;
   background-repeat: no-repeat !important;
+  position: relative;
+  overflow-x: hidden !important;   /* Prevent horizontal scroll */
 }
 
 /* WEATHER BACKGROUNDS */
-.sunny { background-image: url("https://images.unsplash.com/photo-1501973801540-537f08ccae7b?auto=format&fit=crop&w=1600&q=80"); }
-.cloudy { background-image: url("https://images.unsplash.com/photo-1499346030926-9a72daac6c63?auto=format&fit=crop&w=1600&q=80"); }
-.rainy  { background-image: url("https://images.unsplash.com/photo-1526676037777-05a7b6f4e2b2?auto=format&fit=crop&w=1600&q=80"); }
-.storm  { background-image: url("https://images.unsplash.com/photo-1500673922987-e212871fec22?auto=format&fit=crop&w=1600&q=80"); }
-.snowy  { background-image: url("https://images.unsplash.com/photo-1608889175123-1f1f908db8b3?auto=format&fit=crop&w=1600&q=80"); }
-.night  { background-image: url("https://images.unsplash.com/photo-1470441004053-75a75ba8f360?auto=format&fit=crop&w=1600&q=80"); }
+.sunny { background-image: url("https://images.unsplash.com/photo-1501973801540-537f08ccae7b?auto=format&fit=crop&w=1600&q=80") !important; }
+.cloudy { background-image: url("https://images.unsplash.com/photo-1499346030926-9a72daac6c63?auto=format&fit=crop&w=1600&q=80") !important; }
+.rainy  { background-image: url("https://images.unsplash.com/photo-1526676037777-05a7b6f4e2b2?auto=format&fit=crop&w=1600&q=80") !important; }
+.storm  { background-image: url("https://images.unsplash.com/photo-1500673922987-e212871fec22?auto=format&fit=crop&w=1600&q=80") !important; }
+.snowy  { background-image: url("https://images.unsplash.com/photo-1608889175123-1f1f908db8b3?auto=format&fit=crop&w=1600&q=80") !important; }
+.night  { background-image: url("https://images.unsplash.com/photo-1470441004053-75a75ba8f360?auto=format&fit=crop&w=1600&q=80") !important; }
 
-/* MAIN GLASS PANEL */
+/* GLASS PANEL */
 .app-glass-panel {
   width: 100%;
-  max-width: 100%;            /* FULL WIDTH for all devices */
+  max-width: 900px;
   background: rgba(255, 255, 255, 0.18);
   backdrop-filter: blur(12px);
-  border-radius: 12px;
+  border-radius: 14px;
   padding: 20px;
   margin: 0 auto;
   box-sizing: border-box;
 }
 
-/* LAYOUT */
+/* FLEX LAYOUT */
 .weather-layout {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;     /* CENTER ITEMS instead of pushing edges */
+  gap: 18px;
+  justify-content: center;     /* Center items */
+  align-items: stretch;
+  overflow-x: hidden;
 }
 
 /* CARDS */
 .weather-main,
 .forecast-card {
-  flex: 1;
-  min-width: 280px;            /* Better for phones */
-  padding: 20px;
+  flex: 1 1 100%;              /* Allow full width on mobile */
+  min-width: 0 !important;     /* CRITICAL FIX: prevents overflow */
+  padding: 18px;
   box-sizing: border-box;
-  background: rgba(0,0,0,0.2);
-  border-radius: 12px;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.15);
 }
 
 .big-temp { font-size: 52px; }
 .city-name { font-size: 28px; }
 
-/* MOBILE */
+/* MOBILE FIXES */
 @media (max-width: 600px) {
   .app-glass-panel {
+    width: 100%;
     padding: 12px;
     border-radius: 0;
   }
 
   .weather-layout {
     flex-direction: column;
+    gap: 15px;
   }
 
   .weather-main,
   .forecast-card {
-    width: 100%;
-    min-width: unset;
-    padding: 15px;
+    width: 100% !important;
+    flex: 1 1 100% !important;
+    min-width: 0 !important;        /* Stops cut-off */
+    padding: 14px;
   }
 
   .big-temp { font-size: 32px; }
@@ -87,7 +94,7 @@
 /* DESKTOP */
 @media (min-width: 900px) {
   .app-glass-panel {
-    max-width: 850px;        /* Desktop only */
+    max-width: 850px;
   }
 }
 
@@ -96,4 +103,5 @@ html, body, #root {
   margin: 0;
   padding: 0;
   width: 100%;
+  overflow-x: hidden !important;
 }
