@@ -98,16 +98,16 @@
 /*                     MAIN GRID LAYOUT                      */
 /* ========================================================= */
 
-.weather-layout {
+/* .weather-layout {
   width: 90%;
   max-width: 1200px;
   height: 70vh;   /* Fix height to keep everything visible */
-  display: grid;
+  /* display: grid;
   grid-template-columns: 1fr 1.3fr;
   gap: 25px;
   margin-top: 20px;
   z-index: 2;
-}
+} */ */
 
 
 /* ========================================================= */
