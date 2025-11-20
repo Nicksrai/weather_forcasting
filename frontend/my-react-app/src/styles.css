@@ -6,113 +6,94 @@
   color: white;
   display: flex;
   flex-direction: column;
-  align-items: center;      /* This is OK now */
-  padding-top: 30px;
+  padding-top: 20px;          /* Removed align-items: center */
   background-size: cover !important;
   background-position: center !important;
   background-repeat: no-repeat !important;
-  position: relative;
-  overflow: hidden;
 }
 
-/* WEATHER THEMES */
-.sunny { background-image: url("https://images.unsplash.com/photo-1501973801540-537f08ccae7b?auto=format&fit=crop&w=1600&q=80") !important; }
-.cloudy { background-image: url("https://images.unsplash.com/photo-1499346030926-9a72daac6c63?auto=format&fit=crop&w=1600&q=80") !important; }
-.rainy { background-image: url("https://images.unsplash.com/photo-1526676037777-05a7b6f4e2b2?auto=format&fit=crop&w=1600&q=80") !important; }
-.storm { background-image: url("https://images.unsplash.com/photo-1500673922987-e212871fec22?auto=format&fit=crop&w=1600&q=80") !important; }
-.snowy { background-image: url("https://images.unsplash.com/photo-1608889175123-1f1f908db8b3?auto=format&fit=crop&w=1600&q=80") !important; }
-.night { background-image: url("https://images.unsplash.com/photo-1470441004053-75a75ba8f360?auto=format&fit=crop&w=1600&q=80") !important; }
+/* WEATHER BACKGROUNDS */
+.sunny { background-image: url("https://images.unsplash.com/photo-1501973801540-537f08ccae7b?auto=format&fit=crop&w=1600&q=80"); }
+.cloudy { background-image: url("https://images.unsplash.com/photo-1499346030926-9a72daac6c63?auto=format&fit=crop&w=1600&q=80"); }
+.rainy  { background-image: url("https://images.unsplash.com/photo-1526676037777-05a7b6f4e2b2?auto=format&fit=crop&w=1600&q=80"); }
+.storm  { background-image: url("https://images.unsplash.com/photo-1500673922987-e212871fec22?auto=format&fit=crop&w=1600&q=80"); }
+.snowy  { background-image: url("https://images.unsplash.com/photo-1608889175123-1f1f908db8b3?auto=format&fit=crop&w=1600&q=80"); }
+.night  { background-image: url("https://images.unsplash.com/photo-1470441004053-75a75ba8f360?auto=format&fit=crop&w=1600&q=80"); }
 
-/* GLASS PANEL FIX — SUPER IMPORTANT */
+/* MAIN GLASS PANEL */
 .app-glass-panel {
-  width: 95%;
-  max-width: 1000px;   /* Desktop wide — but mobile will override */
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(10px);
-  border-radius: 14px;
+  width: 100%;
+  max-width: 100%;            /* FULL WIDTH for all devices */
+  background: rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(12px);
+  border-radius: 12px;
   padding: 20px;
+  margin: 0 auto;
   box-sizing: border-box;
 }
 
 /* LAYOUT */
 .weather-layout {
-  display: flex;
-  justify-content: space-between;
   width: 100%;
-  gap: 20px;
+  display: flex;
   flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;     /* CENTER ITEMS instead of pushing edges */
 }
 
 /* CARDS */
 .weather-main,
 .forecast-card {
   flex: 1;
-  min-width: 250px;
+  min-width: 280px;            /* Better for phones */
   padding: 20px;
   box-sizing: border-box;
+  background: rgba(0,0,0,0.2);
+  border-radius: 12px;
 }
 
-.big-temp { font-size: 60px; }
-.city-name { font-size: 32px; }
+.big-temp { font-size: 52px; }
+.city-name { font-size: 28px; }
 
-/* =========================================================
-   RESPONSIVE DESIGN
-   ========================================================= */
-
+/* MOBILE */
 @media (max-width: 600px) {
   .app-glass-panel {
-    width: 100% !important;
-    max-width: 100% !important;
-    border-radius: 0;  /* Mobile fullscreen look */
     padding: 12px;
+    border-radius: 0;
   }
 
   .weather-layout {
     flex-direction: column;
-    gap: 15px;
   }
 
   .weather-main,
   .forecast-card {
     width: 100%;
     min-width: unset;
-    padding: 12px;
+    padding: 15px;
   }
 
-  .big-temp { font-size: 36px; }
-  .city-name { font-size: 24px; }
+  .big-temp { font-size: 32px; }
+  .city-name { font-size: 20px; }
 }
 
+/* TABLETS */
 @media (min-width: 600px) and (max-width: 900px) {
-  .app-glass-panel {
-    width: 95%;
-    max-width: 95%;
-  }
-
   .weather-layout {
     flex-direction: column;
   }
-
-  .big-temp { font-size: 45px; }
 }
 
-@media (min-width: 900px) and (max-width: 1200px) {
+/* DESKTOP */
+@media (min-width: 900px) {
   .app-glass-panel {
-    width: 85%;
+    max-width: 850px;        /* Desktop only */
   }
 }
 
-@media (min-width: 1200px) {
-  .app-glass-panel {
-    width: 70%;
-    max-width: 1000px;
-  }
-}
-
-/* FIX: ROOT CONTAINER SHOULD NOT LIMIT WIDTH */
+/* ROOT FIX */
 html, body, #root {
-  margin: 0 !important;
-  padding: 0 !important;
-  width: 100% !important;
-  max-width: 100% !important;
+  margin: 0;
+  padding: 0;
+  width: 100%;
 }
