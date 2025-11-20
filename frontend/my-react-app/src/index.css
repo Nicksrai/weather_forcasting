@@ -45,6 +45,41 @@
   background-image: url("https://images.unsplash.com/photo-1470441004053-75a75ba8f360?auto=format&fit=crop&w=1600&q=80") !important;
 }
 
+/* GLASS PANEL FIX (MAKES IT RESPONSIVE) */
+.app-glass-panel {
+  width: 80%;
+  max-width: 900px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border-radius: 14px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.weather-layout {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  gap: 20px;
+  flex-wrap: wrap; /* 💡 FIX: Allows layout to wrap on smaller screens */
+}
+
+.weather-main,
+.forecast-card {
+  flex: 1;
+  min-width: 250px; /* 💡 PREVENTS overflow on small screens */
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Temperature Fonts Fix */
+.big-temp {
+  font-size: 60px;
+}
+
+.city-name {
+  font-size: 32px;
+}
 
 /* =========================================================
    RESPONSIVE DESIGN
@@ -55,31 +90,32 @@
   .weather-container {
     padding-top: 15px;
     background-size: cover !important;
-    background-position: center top !important;
+    background-position: center !important;
   }
 
   .app-glass-panel {
     width: 95%;
-    padding: 12px;
+    padding: 15px;
   }
 
   .weather-layout {
     flex-direction: column;
-    gap: 20px;
+    gap: 15px;
   }
 
   .weather-main,
   .forecast-card {
     width: 100%;
+    min-width: unset;
     padding: 15px;
   }
 
   .big-temp {
-    font-size: 38px !important;
+    font-size: 35px !important;
   }
 
   .city-name {
-    font-size: 26px !important;
+    font-size: 24px !important;
   }
 }
 
