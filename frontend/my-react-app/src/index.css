@@ -44,3 +44,75 @@
 .night {
   background-image: url("https://images.unsplash.com/photo-1470441004053-75a75ba8f360?auto=format&fit=crop&w=1600&q=80") !important;
 }
+
+
+/* =========================================================
+   RESPONSIVE DESIGN
+   ========================================================= */
+
+/* 📱 Small Devices (Phones) */
+@media (max-width: 600px) {
+  .weather-container {
+    padding-top: 15px;
+    background-size: cover !important;
+    background-position: center top !important;
+  }
+
+  .app-glass-panel {
+    width: 95%;
+    padding: 12px;
+  }
+
+  .weather-layout {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .weather-main,
+  .forecast-card {
+    width: 100%;
+    padding: 15px;
+  }
+
+  .big-temp {
+    font-size: 38px !important;
+  }
+
+  .city-name {
+    font-size: 26px !important;
+  }
+}
+
+/* 📱📲 Medium Devices (Large Phones & Small Tablets) */
+@media (min-width: 600px) and (max-width: 900px) {
+  .app-glass-panel {
+    width: 90%;
+    padding: 18px;
+  }
+
+  .weather-layout {
+    flex-direction: column;
+  }
+
+  .big-temp {
+    font-size: 45px !important;
+  }
+}
+
+/* 💻 Tablets / Small Laptops */
+@media (min-width: 900px) and (max-width: 1200px) {
+  .app-glass-panel {
+    width: 85%;
+  }
+
+  .weather-layout {
+    gap: 25px;
+  }
+}
+
+/* 🖥 Large Screens */
+@media (min-width: 1200px) {
+  .app-glass-panel {
+    width: 70%;
+  }
+}
