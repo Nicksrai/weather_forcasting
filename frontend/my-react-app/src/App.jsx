@@ -11,7 +11,7 @@ export default function App() {
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch(`https://waether_backend.onrender.com/api/weather?city=${encodeURIComponent(city)}`);
+      const res = await fetch(`https://waether-backend.onrender.com/api/weather?city=${encodeURIComponent(city)}`);
       if (!res.ok) throw new Error("City not found or backend error");
       const json = await res.json();
       setData(json);
