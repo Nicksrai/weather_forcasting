@@ -2,20 +2,46 @@
 /*                MAIN WEATHER CONTAINER                     */
 /* ========================================================= */
 
-.weather-container {
-  height: 100vh;
+/* ========================================================= */
+/*                     MAIN GRID LAYOUT                      */
+/* ========================================================= */
+
+.weather-layout {
   width: 100%;
-  transition: background-image 1s ease, color 1s ease;
-  color: white;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 20px;
-  position: relative;
-  overflow: hidden;
-  background-size: cover !important;
-  background-position: center !important;
-  background-repeat: no-repeat !important;
+  max-width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 25px;
+  margin-top: 20px;
+  z-index: 2;
+}
+
+/* 📱 Mobile Fix — stack vertically */
+@media (max-width: 768px) {
+  .weather-layout {
+    grid-template-columns: 1fr;   /* Stack */
+    height: auto;                 /* Remove forced height */
+    gap: 20px;
+    width: 100%;
+  }
+
+  .forecast-card,
+  .weather-main {
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  .main-icon {
+    width: 90px;
+  }
+
+  .big-temp {
+    font-size: 2.8rem;
+  }
+
+  .city-name {
+    font-size: 1.6rem;
+  }
 }
 
 
