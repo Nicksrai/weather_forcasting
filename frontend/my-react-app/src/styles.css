@@ -1,11 +1,44 @@
-/* MAIN CONTAINER */
+/* ============================
+   WEATHER APP — FULL CSS
+   Responsive layout + 5-day forecast
+   ============================ */
+
+/* ---------- ROOT / RESET ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden !important; /* Prevent horizontal scroll */
+  font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ---------- THEME / VARIABLES (optional) ---------- */
+:root{
+  --glass-bg: rgba(255,255,255,0.18);
+  --card-bg: rgba(255,255,255,0.15);
+  --accent: rgba(255,255,255,0.85);
+  --gap: 18px;
+  --radius: 14px;
+}
+
+/* ---------- MAIN CONTAINER ---------- */
 .weather-container {
   min-height: 100vh;
   width: 100%;
   transition: background-image 1s ease, color 1s ease;
-  color: white;
+  color: var(--accent);
   display: flex;
   flex-direction: column;
+  padding: 20px;              /* added side padding for breathing room */
   padding-top: 20px;
   background-size: cover !important;
   background-position: center !important;
@@ -14,7 +47,8 @@
   overflow-x: hidden !important;   /* Prevent horizontal scroll */
 }
 
-/* WEATHER BACKGROUNDS */
+/* ---------- WEATHER BACKGROUNDS ---------- */
+/* Keep these classes on the top-level .weather-container to change theme */
 .sunny { background-image: url("https://images.unsplash.com/photo-1501973801540-537f08ccae7b?auto=format&fit=crop&w=1600&q=80") !important; }
 .cloudy { background-image: url("https://images.unsplash.com/photo-1499346030926-9a72daac6c63?auto=format&fit=crop&w=1600&q=80") !important; }
 .rainy  { background-image: url("https://images.unsplash.com/photo-1526676037777-05a7b6f4e2b2?auto=format&fit=crop&w=1600&q=80") !important; }
@@ -22,44 +56,140 @@
 .snowy  { background-image: url("https://images.unsplash.com/photo-1608889175123-1f1f908db8b3?auto=format&fit=crop&w=1600&q=80") !important; }
 .night  { background-image: url("https://images.unsplash.com/photo-1470441004053-75a75ba8f360?auto=format&fit=crop&w=1600&q=80") !important; }
 
-/* GLASS PANEL */
+/* ---------- GLASS PANEL (centered content) ---------- */
 .app-glass-panel {
   width: 100%;
   max-width: 900px;
-  background: rgba(255, 255, 255, 0.18);
-  backdrop-filter: blur(12px);
-  border-radius: 14px;
-  padding: 20px;
   margin: 0 auto;
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: var(--radius);
+  padding: 20px;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
 }
 
-/* FLEX LAYOUT */
+/* ---------- LAYOUT (main + forecast grid) ---------- */
 .weather-layout {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  gap: 18px;
-  justify-content: center;     /* Center items */
+  gap: var(--gap);
+  justify-content: center;
   align-items: stretch;
   overflow-x: hidden;
 }
 
-/* CARDS */
-.weather-main,
-.forecast-card {
-  flex: 1 1 100%;              /* Allow full width on mobile */
-  min-width: 0 !important;     /* CRITICAL FIX: prevents overflow */
-  padding: 18px;
+/* ---------- MAIN WEATHER CARD ---------- */
+.weather-main {
+  flex: 1 1 100%;
+  padding: 22px;
+  border-radius: var(--radius);
+  background: var(--card-bg);
   box-sizing: border-box;
-  border-radius: 14px;
-  background: rgba(255,255,255,0.15);
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  justify-content: space-between;
+  min-width: 0; /* CRITICAL: prevents overflow in flex items */
 }
 
-.big-temp { font-size: 52px; }
-.city-name { font-size: 28px; }
+/* Main content left column */
+.weather-main .main-left {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
 
-/* MOBILE FIXES */
+/* Main content right column (icon, details) */
+.weather-main .main-right {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: flex-end;
+  min-width: 0;
+}
+
+/* ---------- FORECAST CARD (individual day) ---------- */
+/* default behaviour: tries to fit 5 cards on large screens */
+.forecast-card {
+  flex: 1 1 calc(20% - var(--gap));   /* 5 cards in a row on large screens */
+  min-width: 140px;                   /* prevents shrinking too much */
+  max-width: 220px;                   /* keeps good aspect */
+  padding: 16px;
+  border-radius: var(--radius);
+  background: var(--card-bg);
+  box-sizing: border-box;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+
+/* small hover effect for non-touch devices */
+.forecast-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+}
+
+/* ---------- TYPOGRAPHY UTILITIES ---------- */
+.big-temp {
+  font-size: 52px;
+  font-weight: 600;
+  line-height: 1;
+  margin: 0;
+}
+
+.city-name {
+  font-size: 28px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.subtle {
+  font-size: 14px;
+  opacity: 0.9;
+  margin: 0;
+}
+
+/* small text variants */
+.small {
+  font-size: 12px;
+  opacity: 0.95;
+}
+
+/* ---------- ICONS / IMAGES ---------- */
+.weather-icon {
+  width: 72px;
+  height: 72px;
+  display: block;
+  object-fit: contain;
+  margin: 0 auto;
+}
+
+/* ---------- UTILITY / FLEX HELPERS ---------- */
+.row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* ---------- RESPONSIVE RULES ---------- */
+
+/* --- Mobile: stack everything, full width cards --- */
 @media (max-width: 600px) {
   .app-glass-panel {
     width: 100%;
@@ -72,36 +202,116 @@
     gap: 15px;
   }
 
-  .weather-main,
-  .forecast-card {
-    width: 100% !important;
-    flex: 1 1 100% !important;
-    min-width: 0 !important;        /* Stops cut-off */
+  .weather-main {
+    flex: 1 1 100%;
     padding: 14px;
+    gap: 12px;
   }
+
+  .forecast-card {
+    flex: 1 1 100% !important;   /* full width per card */
+    min-width: 0 !important;
+    max-width: 100% !important;
+    padding: 12px;
+    text-align: left;
+    flex-direction: row;         /* small icon + text row to save vertical space */
+    align-items: center;
+  }
+
+  .forecast-card .weather-icon { width: 48px; height: 48px; margin-right: 12px; }
 
   .big-temp { font-size: 32px; }
   .city-name { font-size: 20px; }
 }
 
-/* TABLETS */
-@media (min-width: 600px) and (max-width: 900px) {
+/* --- Tablet: show 2–3 forecast cards per row --- */
+@media (min-width: 600px) and (max-width: 899px) {
+  .app-glass-panel {
+    max-width: 760px;
+  }
+
   .weather-layout {
-    flex-direction: column;
+    flex-direction: row;
+  }
+
+  /* make forecast cards take approx 33% (3 per row) */
+  .forecast-card {
+    flex: 1 1 calc(33% - var(--gap));
+    min-width: 150px;
+    max-width: 300px;
+  }
+
+  .weather-main {
+    flex: 1 1 100%;
   }
 }
 
-/* DESKTOP */
+/* --- Desktop: more space, 5 cards per row when wide enough --- */
 @media (min-width: 900px) {
   .app-glass-panel {
-    max-width: 850px;
+    max-width: 1000px;
+  }
+
+  /* Keep main at full row, forecast cards flow below */
+  .weather-main {
+    flex: 1 1 100%;
+    padding: 22px;
+  }
+
+  .forecast-card {
+    /* calc(20% - gap) already set above, keep card widths balanced */
+    flex: 1 1 calc(20% - var(--gap));
+    max-width: 220px;
   }
 }
 
-/* ROOT FIX */
-html, body, #root {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  overflow-x: hidden !important;
+/* Large wide screens: ensure exact 5 equal columns */
+@media (min-width: 1200px) {
+  .app-glass-panel {
+    max-width: 1200px;
+    padding: 28px;
+  }
+
+  .forecast-card {
+    flex: 1 1 calc(20% - var(--gap));
+    min-width: 180px;
+    max-width: none;
+  }
 }
+
+/* ---------- ACCESSIBILITY / SMALL TOUCHES ---------- */
+button, a {
+  cursor: pointer;
+  user-select: none;
+}
+
+button:focus, a:focus {
+  outline: 3px solid rgba(255,255,255,0.12);
+  outline-offset: 2px;
+}
+
+/* ---------- OPTIONAL: grid fallback for forecast ---------- */
+/* If you prefer a grid instead of flex for the forecast area, you can
+   add a wrapper .forecast-grid around the forecast-cards and enable this.
+   (Uncomment if using grid) */
+/*
+.forecast-grid {
+  display: grid;
+  gap: var(--gap);
+  grid-template-columns: repeat(5, 1fr);
+}
+
+@media (max-width: 900px) {
+  .forecast-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .forecast-grid {
+    grid-template-columns: 1fr;
+  }
+}
+*/
+
+/* ---------- END OF FILE ---------- */
