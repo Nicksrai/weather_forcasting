@@ -7,9 +7,15 @@ function formatDateFromDt(dt) {
 
 export default function ForecastCard({ item }) {
   return (
-    <div className="card">
+    <div className="forecast-day">
       <p className="date">{formatDateFromDt(item.dt)}</p>
-      <img src={`https://openweathermap.org/img/wn/${item.icon}@2x.png`} alt={item.weather_desc} />
+      <img
+        className="weather-icon"
+        src={`https://openweathermap.org/img/wn/${item.icon}@2x.png`}
+        alt={item.weather_desc}
+        width="64"
+        height="64"
+      />
       <p className="temp">{item.temp}°C</p>
       <p className="desc">{item.weather_main}</p>
       <p className="mini">{item.temp_min}° / {item.temp_max}°</p>

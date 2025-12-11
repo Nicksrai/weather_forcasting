@@ -62,6 +62,8 @@ export default function App() {
                     className="main-icon"
                     src={`https://openweathermap.org/img/wn/${data.current.icon}@4x.png`}
                     alt={data.current.weather_desc}
+                    width="120"
+                    height="120"
                   />
 
                   <div>
@@ -79,7 +81,8 @@ export default function App() {
               <div className="forecast-card glass-card">
                 <h3 className="forecast-title">5-Day Forecast</h3>
 
-                <div className="forecast-list">
+                {/* IMPORTANT: This container now matches the CSS grid rules */}
+                <div className="forecast-days">
                   {data.forecast.map((f) => (
                     <ForecastCard key={f.dt} item={f} />
                   ))}
