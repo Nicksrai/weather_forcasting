@@ -4,6 +4,17 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Weather Forecast</title>
+      <!-- 🔥 Paste the FIX BELOW this comment -->
+    <style>
+      /* Critical forced fix — temporary */
+      .forecast-card{width:100%!important;overflow:visible!important;min-width:0!important;box-sizing:border-box!important}
+      .forecast-days{display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;gap:12px!important;min-width:0!important;width:100%!important}
+      @media (max-width:720px){
+        .forecast-days{display:flex!important;flex-direction:row;gap:12px;overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:6px}
+        .forecast-day{min-width:200px;flex:0 0 auto;scroll-snap-align:start;max-width:260px}
+      }
+      .app-glass-panel, .app-glass-panel * { min-width:0!important }
+    </style>
   </head>
   <body>
     <div id="root"></div>
