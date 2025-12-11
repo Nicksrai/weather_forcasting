@@ -1,6 +1,7 @@
 /* ============================
-   WEATHER APP — COMPLETE CSS
+   WEATHER APP — COMPLETE CSS (patched)
    Responsive layout + 5-day forecast
+   Includes fixes for grid shrinking / overflow
    ============================ */
 
 /* ---------- RESET ---------- */
@@ -149,6 +150,10 @@ html, body, #root {
   background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.04));
   box-sizing: border-box;
   min-width: 0;
+
+  /* Patch: ensure the card uses full width and doesn't clip */
+  width: 100%;
+  overflow: visible;
 }
 
 /* forecast title */
@@ -166,11 +171,14 @@ html, body, #root {
 /* container for forecast tiles — uses CSS Grid for predictable wrapping */
 .forecast-days {
   display: grid;
-  grid-template-columns: repeat(5, 1fr); /* desktop: 5 in a row */
+  /* Use minmax(0,1fr) so columns can shrink below intrinsic width */
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 12px;
   align-items: start;
   width: 100%;
   margin-top: 8px;
+  box-sizing: border-box;
+  min-width: 0;
 }
 
 /* each day tile */
@@ -287,7 +295,7 @@ html, body, #root {
   }
 
   .forecast-days {
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(5, minmax(0, 1fr));
   }
 
   .main-icon { width: 120px; height: 120px; }
